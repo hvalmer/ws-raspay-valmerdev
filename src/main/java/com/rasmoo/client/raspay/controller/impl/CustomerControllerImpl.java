@@ -26,7 +26,8 @@ public class CustomerControllerImpl implements CustomerController {
     }
 
     @Override
-    public ResponseEntity<CustomerModel> createCustomer(@Valid @RequestBody CustomerDto customerDto){
+    public ResponseEntity<CustomerModel> createCustomer(
+            @Valid @RequestBody CustomerDto customerDto){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(this.customerService.create(customerDto));

@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +37,10 @@ public interface CustomerController {
             )
     })
 
-    @PostMapping
-    ResponseEntity<CustomerModel> createCustomer(@RequestBody CustomerDto customerDto);
+    @PostMapping(
+            consumes = "application/json",
+            produces = "application/json"
+    )
+    ResponseEntity<CustomerModel> createCustomer(
+            @Valid @RequestBody CustomerDto customerDto);
 }
