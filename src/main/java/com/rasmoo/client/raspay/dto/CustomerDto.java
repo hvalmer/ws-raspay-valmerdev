@@ -29,4 +29,5 @@ public class CustomerDto {
     @NotBlank(message = "cpf deve ser preenchido")
     @CPF(message = "cpf precisa ser valido")
     private String cpf;
+
 }

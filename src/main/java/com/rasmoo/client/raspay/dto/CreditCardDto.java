@@ -34,5 +34,4 @@ public class CreditCardDto {
     private String documentNumber;
 
     private Long installments;
-
 }
