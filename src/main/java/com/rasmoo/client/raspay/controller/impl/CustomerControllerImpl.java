@@ -4,7 +4,6 @@ import com.rasmoo.client.raspay.controller.CustomerController;
 import com.rasmoo.client.raspay.dto.CustomerDto;
 import com.rasmoo.client.raspay.model.CustomerModel;
 import com.rasmoo.client.raspay.service.CustomerService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value = "/v1/customer")
+@RequestMapping(value = "/v1/customers")
 public class CustomerControllerImpl implements CustomerController {
 
     private final CustomerService customerService;
@@ -27,7 +26,7 @@ public class CustomerControllerImpl implements CustomerController {
 
     @Override
     public ResponseEntity<CustomerModel> createCustomer(
-            @Valid @RequestBody CustomerDto customerDto){
+            @RequestBody CustomerDto customerDto){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(this.customerService.create(customerDto));

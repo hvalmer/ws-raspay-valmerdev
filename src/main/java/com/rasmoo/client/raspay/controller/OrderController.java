@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Tag(
@@ -35,5 +36,11 @@ public interface OrderController {
                     description = "Erro interno no serviço"
             )
     })
-    ResponseEntity<OrderModel> create(@Valid @RequestBody OrderDto orderDto, Object content);
+
+    @PostMapping(
+            consumes = "application/jason",
+            produces = "application/jason"
+    )
+
+    ResponseEntity<OrderModel> create(@Valid @RequestBody OrderDto orderDto);
 }

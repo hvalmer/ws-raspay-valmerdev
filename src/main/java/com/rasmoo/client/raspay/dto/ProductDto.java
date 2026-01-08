@@ -1,37 +1,30 @@
 package com.rasmoo.client.raspay.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Schema(description = "Dados para cadastro de produto")
 public class ProductDto {
-
-    private String id;
 
     @NotBlank(message = "acronym é obrigatório")
     @Size(min = 6, max = 20)
+    @Schema(example = "PROD_ABC123")
     private String acronym;
 
     @NotBlank(message = "name é obrigatório")
+    @Schema(example = "Produto Premium")
     private String name;
 
-    @NotNull
-    @JsonProperty("current_price")
+    @Positive(message = "currentPrice deve ser maior que zero")
+    @Schema(example = "199.90")
     private BigDecimal currentPrice;
-
-    @JsonProperty(value = "dt_creation")
-    private LocalDate dtCreation;
-
 }
