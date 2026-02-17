@@ -2,9 +2,7 @@ package com.rasmoo.client.raspay.mapper;
 
 import com.rasmoo.client.raspay.dto.OrderDto;
 import com.rasmoo.client.raspay.dto.ProductDto;
-import com.rasmoo.client.raspay.model.CustomerModel;
 import com.rasmoo.client.raspay.model.OrderModel;
-import com.rasmoo.client.raspay.model.ProductModel;
 
 import java.time.LocalDateTime;
 
@@ -14,7 +12,7 @@ public class OrderMapper {
 
     public static OrderModel fromDtoToModel(OrderDto orderDto, ProductDto productDto) {
         return OrderModel.builder()
-                .id(orderDto.getId())
+                // .id(orderDto.getId()) // REMOVE: id é gerado pelo Mongo
                 .customerId(orderDto.getCustomerId())
                 .originalPrice(productDto.getCurrentPrice())
                 .discount(orderDto.getDiscount())

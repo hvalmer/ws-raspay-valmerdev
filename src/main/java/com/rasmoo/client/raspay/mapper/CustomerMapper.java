@@ -7,9 +7,10 @@ public class CustomerMapper {
 
     private CustomerMapper(){}
 
+    // CREATE: DTO -> Model (sem id)
     public static CustomerModel fromDtoToModel(CustomerDto dto) {
         return CustomerModel.builder()
-                .id(dto.getId())
+                // .id(dto.getId()) // REMOVER: id vem do Mongo / backend
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
                 .email(dto.getEmail())
@@ -17,22 +18,24 @@ public class CustomerMapper {
                 .build();
     }
 
-    public static CustomerModel fromModelToModel(CustomerModel curret, CustomerDto update) {
+    // UPDATE: mantém id/cpf (e o que você quiser travar), troca o resto
+    public static CustomerModel fromModelToModel(CustomerModel current, CustomerDto update) {
         return CustomerModel.builder()
-                .id(curret.getId())
-                .cpf(curret.getCpf())
-                .email(curret.getEmail())
+                .id(current.getId())
+                .cpf(current.getCpf())
+                .email(current.getEmail()) // se quiser permitir atualizar email, use update.getEmail()
                 .firstName(update.getFirstName())
                 .lastName(update.getLastName())
                 .build();
     }
 
+    // RESPONSE: Model -> DTO
     public static CustomerDto fromModelToDto(CustomerModel model) {
         return CustomerDto.builder()
-                .id(model.getId())
                 .firstName(model.getFirstName())
                 .lastName(model.getLastName())
                 .email(model.getEmail())
+                .cpf(model.getCpf())
                 .build();
     }
 }
